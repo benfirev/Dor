@@ -6,15 +6,24 @@
     <title>Dor</title>
 </head>
 
+
 <script>
+    const nisOwed = 480
+    const BTCValueAtTime = 16754
+    const usdToNis = 3.51 
+    
+
     function BCUpdate(){
 
-
         var valueUSD = document.getElementsByClassName("btcwdgt-body")[0].getElementsByTagName( 'li' )[0].innerHTML;
-        var valueNIS = Math.floor(100*(((480/(16754 * 3.51)) * Number(valueUSD) * 3.51) - 480)) / 100;
-        var finalmessage = "Dor could have made:" + String(valueNIS) + "₪"
+        var valueNIS = Math.round(1000*(((nisOwed/(BTCValueAtTime * usdToNis)) * Number(valueUSD) * usdToNis)) - nisOwed)/1000;
+        var keyword =(valueNIS>=0)?"made":"lost";
+        var dorName = (new Date().getHours() < 2)?"Djor":"Dor";
+        document.title = dorName;
+        var finalmessage = dorName +" could have "+ keyword+": "+ String(Math.abs(valueNIS)) + "₪";
         document.getElementById("money").innerHTML = finalmessage;
     }
+
 
   (function(b,i,t,C,O,I,N) {
     window.addEventListener('load',function() {
