@@ -17,10 +17,10 @@
 
         var valueUSD = document.getElementsByClassName("btcwdgt-body")[0].getElementsByTagName( 'li' )[0].innerHTML;
         var valueNIS = Math.round(1000*(((nisOwed/(BTCValueAtTime * usdToNis)) * Number(valueUSD) * usdToNis)) - nisOwed)/1000;
-        var keyword =(valueNIS>=0)?"made":"lost";
+        var keyword =(valueNIS<=0)?"made":"lost";
         var dorName = (new Date().getHours() < 2)?"Djor":"Dor";
         document.title = dorName;
-        var finalmessage = dorName +" could have "+ keyword+": "+ String(Math.abs(valueNIS)) + "₪";
+        var finalmessage = dorName +" would have "+ keyword+": "+ String(Math.abs(valueNIS)) + "₪";
         document.getElementById("money").innerHTML = finalmessage;
     }
 
